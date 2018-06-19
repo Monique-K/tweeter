@@ -2,8 +2,8 @@ $(document).ready(function() {
   console.log("ready")
 
   $("textarea").on("keyup", function() {
-    const value = $(this).val()
-    $("#counter").text(charCounter(value.length))
+    const input = $(this).val()
+    $("#counter").text(charCounter(input.length))
   })
 
   function charCounter(chars) {

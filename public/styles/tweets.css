@@ -1,0 +1,44 @@
+.tweet header {
+  height: 80px;
+  padding: 2px;
+  background-color: #e3e7ed;
+  text-align: right;
+}
+
+.tweet {
+  overflow: hidden;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  margin: 2em;
+}
+
+#tweet-container .tweet {
+  padding: 0px;
+}
+
+.tweet h1 {
+  float: left;
+  margin: 10px;
+}
+
+.tweet-content {
+  padding: 0%;
+  text-align: left;
+  height: 50px;
+}
+
+.avatar {
+  float: left;
+  margin: 5px;
+  height: 60px;
+}
+
+.tweet-date {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.handle {
+  margin-right: 5px;
+}
