@@ -1,16 +1,20 @@
 $(document).ready(function() {
   console.log("ready")
 
-
-
-  let listener = $("textarea").on("keypress", function() {
-    let value = $(this).val()
-    $(".counter").text(charCounter(value.length))
+  $("textarea").on("keyup", function() {
+    const value = $(this).val()
+    $("#counter").text(charCounter(value.length))
   })
 
   function charCounter(chars) {
-    $charsLeft = 140 - chars;
-    return $charsLeft;
+    const charsLeft = 140 - chars;
+    if (charsLeft < 1) {
+      $(".counter").css("color", "red")
+    } else {
+      $(".counter").css("color", "black")
+    }
+    return charsLeft;
   }
+
 
 });
