@@ -56,10 +56,10 @@ const data = [
 var newTweet;
 
 function createTweetElement(tweet) {
-  let $tweet = $('#template-tweet article').clone().addClass("tweet");
+  let $tweet = $('#template-tweet article').clone().addClass(".tweet");
     $tweet.find(".avatar").text(tweet.user.avatars.regular);
     $tweet.find('h1').text(tweet.user.name);
-    $tweet.find('#handle').text(tweet.user.handle);
+    $tweet.find('.handle').text(tweet.user.handle);
     $tweet.find(".tweet-content").text(tweet.content.text);
     $tweet.find(".tweet-date").text(tweet.created_at);
     return $tweet;
@@ -71,8 +71,24 @@ function renderTweets(data) {
   })
 }
 
-renderTweets(data);
+//Posting a tweet
+$("form.new-tweet-form").on("submit", function(event) {
+   event.preventDefault();
+   return $(this).serialize();
+});
 
+//fetching tweets from the web page
+function loadTweets(){
+  $.ajax({
+      url: 'http://localhost:8080/tweets',
+      method: 'GET',
+      success: function(data){
+        renderTweets(data)
+      }
+  });
+}
+
+loadTweets();
 
 });
 
