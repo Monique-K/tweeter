@@ -56,8 +56,8 @@ const data = [
 var newTweet;
 
 function createTweetElement(tweet) {
-  let $tweet = $('#template-tweet article').clone().addClass(".tweet");
-    $tweet.find(".avatar").text(tweet.user.avatars.regular);
+  let $tweet = $('#template-tweet article').clone();
+    $tweet.find(".avatar").attr("src", tweet.user.avatars.small);
     $tweet.find('h1').text(tweet.user.name);
     $tweet.find('.handle').text(tweet.user.handle);
     $tweet.find(".tweet-content").text(tweet.content.text);
@@ -71,9 +71,16 @@ function renderTweets(data) {
   })
 }
 
+
 //Posting a tweet
-$("form.new-tweet-form").on("submit", function(event) {
+$("form.new-tweet-form").on("submit", function(event) { //------------------------------
    event.preventDefault();
+   var textAreaInput = $(this).find("textarea").val()
+   if (textAreaInput === "" || textAreaInput === null) {
+    $('p.error-message').append("You can't post an empty tweet, silly!")
+   } else if (textAreaInput.length > 140) {
+    $('p.error-message').append("Woah, calm down! That's too many characters!")
+   }
    return $(this).serialize();
 });
 

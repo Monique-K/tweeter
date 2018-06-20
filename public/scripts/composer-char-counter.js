@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("textarea").on("keyup", function() {
+  $(".new-tweet-form textarea").on("keyup", function() {
     const input = $(this).val()
     $("#counter").text(charCounter(input.length))
   })

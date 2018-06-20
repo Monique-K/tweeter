@@ -9,7 +9,7 @@
 
 .tweet header {
   height: 80px;
-  padding: 2px;
+  padding: 5px;
   background-color: #e3e7ed;
 }
 
@@ -21,6 +21,7 @@
   color: #244751;
   float: left;
   margin: 10px;
+  margin-left: 0px;
 }
 
 .tweet-content {
@@ -37,8 +38,8 @@
 }
 
 .tweet-date {
-  margin-top: 8px;
-  margin-bottom: 9px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding-left: 5px;
   display: inline-block;
 }
@@ -48,10 +49,16 @@
   color:#3787ca;
   float: right;
   padding: 5px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .handle {
   float: right;
   margin-right: 5px;
 }
+
+/*.tweet:hover { // can use if js doesn't work
+  border: 1px solid #cccccc;
+ opacity: 1;
+}
+*/
