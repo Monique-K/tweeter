@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log("ready")
 
   $("textarea").on("keyup", function() {
     const input = $(this).val()

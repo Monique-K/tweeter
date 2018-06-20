@@ -1,11 +1,5 @@
-.tweet header {
-  height: 80px;
-  padding: 2px;
-  background-color: #e3e7ed;
-  text-align: right;
-}
-
 .tweet {
+  opacity: 0.6;
   overflow: hidden;
   padding: 10px;
   border: 1px solid #cccccc;
@@ -13,22 +7,30 @@
   margin: 2em;
 }
 
+.tweet header {
+  height: 80px;
+  padding: 2px;
+  background-color: #e3e7ed;
+}
+
 #tweet-container .tweet {
   padding: 0px;
 }
 
 .tweet h1 {
+  color: #244751;
   float: left;
   margin: 10px;
 }
 
 .tweet-content {
   padding: 0%;
-  text-align: left;
   height: 50px;
+  padding-left: 5px;
 }
 
 .avatar {
+  border-radius: 5px;
   float: left;
   margin: 5px;
   height: 60px;
@@ -36,9 +38,20 @@
 
 .tweet-date {
   margin-top: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
+  padding-left: 5px;
+  display: inline-block;
+}
+
+.tweet .icons {
+  display: none;
+  color:#3787ca;
+  float: right;
+  padding: 5px;
+  margin-bottom: 6px;
 }
 
 .handle {
+  float: right;
   margin-right: 5px;
 }
