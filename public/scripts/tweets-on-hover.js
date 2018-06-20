@@ -7,7 +7,7 @@ $("body").on("mouseenter", ".tweet", function() {
   })
 
 $("body").on("mouseleave", ".tweet", function() {
-  $(this).css('opacity', '0.6');
+  $(this).css('opacity', '0.7');
   $(this).find(".icons").css('display', 'none')
   })
 

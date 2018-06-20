@@ -67,7 +67,7 @@ function createTweetElement(tweet) {
 
 function renderTweets(data) {
   data.forEach(function(tweet) {
-    $('#tweet-container').append(createTweetElement(tweet));
+    $('#tweet-container').prepend(createTweetElement(tweet));
   })
 }
 
@@ -77,19 +77,28 @@ $("form.new-tweet-form").on("submit", function(event) { //----------------------
    event.preventDefault();
    var textAreaInput = $(this).find("textarea").val()
    if (textAreaInput === "" || textAreaInput === null) {
-    $('p.error-message').append("You can't post an empty tweet, silly!")
+    $('p.error-message').prepend("You can't post an empty tweet, silly!")
    } else if (textAreaInput.length > 140) {
-    $('p.error-message').append("Woah, calm down! That's too many characters!")
-   }
-   return $(this).serialize();
-});
+    $('p.error-message').prepend("Woah, calm down! That's too many characters!")
+   } else {
+     var newTweet = $(this).serialize();
+     $.ajax({
+        url: 'http://localhost:8080/tweets',
+        method: 'POST',
+        data: newTweet,
+        success: function(newTweet) {
+          loadTweets(newTweet)
+        }
+      })
+  }
+})
 
 //fetching tweets from the web page
 function loadTweets(){
   $.ajax({
       url: 'http://localhost:8080/tweets',
       method: 'GET',
-      success: function(data){
+      success: function(data) {
         renderTweets(data)
       }
   });
@@ -97,5 +106,6 @@ function loadTweets(){
 
 loadTweets();
 
-});
+
+})
 
