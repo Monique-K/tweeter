@@ -3,7 +3,6 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
 
 const data = [
   {
@@ -52,8 +51,9 @@ const data = [
   }
 ];
 
-
+$(document).ready(function() {
 var newTweet;
+loadTweets();
 
 function createTweetElement(tweet) {
   let $tweet = $('#template-tweet article').clone();
@@ -66,32 +66,14 @@ function createTweetElement(tweet) {
 }
 
 function renderTweets(data) {
-  data.forEach(function(tweet) {
-    $('#tweet-container').prepend(createTweetElement(tweet));
-  })
-}
-
-
-//Posting a tweet
-$("form.new-tweet-form").on("submit", function(event) { //------------------------------
-   event.preventDefault();
-   var textAreaInput = $(this).find("textarea").val()
-   if (textAreaInput === "" || textAreaInput === null) {
-    $('p.error-message').prepend("You can't post an empty tweet, silly!")
-   } else if (textAreaInput.length > 140) {
-    $('p.error-message').prepend("Woah, calm down! That's too many characters!")
-   } else {
-     var newTweet = $(this).serialize();
-     $.ajax({
-        url: 'http://localhost:8080/tweets',
-        method: 'POST',
-        data: newTweet,
-        success: function(newTweet) {
-          loadTweets(newTweet)
-        }
-      })
+  if (Array.isArray(data)) {
+    data.forEach(function(tweet) {
+      $('#tweet-container').prepend(createTweetElement(tweet));
+    })
+  } else {
+    $('#tweet-container').prepend(createTweetElement(data));
   }
-})
+}
 
 //fetching tweets from the web page
 function loadTweets(){
@@ -104,8 +86,45 @@ function loadTweets(){
   });
 }
 
-loadTweets();
+function loadLatestTweets(){
+  $.ajax({
+      url: 'http://localhost:8080/tweets',
+      method: 'GET',
+      success: function(data) {
+        renderTweets(data.pop())
+      }
+  });
+}
+
+//Posting a tweet
+$(".new-tweet-form").on("submit", function(event) {
+   event.preventDefault();
+   var textAreaInput = $(this).find("textarea").val()
+   if (textAreaInput === "" || textAreaInput === null) {
+    $('.error-message').prepend("You can't post an empty tweet, silly!")
+   } else if (textAreaInput.length > 140) {
+    $('error-message').prepend("Woah, calm down! That's too many characters!")
+   } else {
+     var newTweet = $(this).serialize();
+     $.ajax({
+        url: 'http://localhost:8080/tweets',
+        method: 'POST',
+        data: newTweet,
+        success: function(response) {
+          loadLatestTweets();
+        }
+      })
+  }
+  $(this).find("textarea").val("");
+})
+
+// Toggle new tweet section on "compose" click
+$(".compose").click(function(){
+  $(".new-tweet").slideToggle();
+  $(".new-tweet-form textarea").focus().select();
+});
 
 
 })
+
 

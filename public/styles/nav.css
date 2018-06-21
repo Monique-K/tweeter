@@ -6,8 +6,7 @@
   height: 80px;
   background-color: #00a087;
   color: #e8fdff;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 5px;
   width: 100%;
 }
 
@@ -20,8 +19,19 @@
   padding-right: 10px;
 }
 
-/*#nav-bar .header { //can use this if my hover js doesn't work
-  float: left;
-  line-height: 85px;
-  font-size: 200%;
-}*/
+#nav-bar .header {
+  font-size: 35px;
+}
+
+#nav-bar .compose {
+  z-index: 200;
+  float: right;
+  background-color: #fbfdfdbd;
+  border: 1px solid #4c4b4b;
+  border-radius: 5px;
+  height: 50px;
+  width: 70;
+  padding: 10px;
+  color: #038a75;
+  margin: 5px;
+  display: block;
