@@ -13,11 +13,13 @@ $("body").on("mouseleave", ".tweet", function() {
 
 //hover effects for compose button
 $("body").on("mouseenter", ".compose", function() {
-    $(this).css('background-color', '#ffffff');
+    $(this).css('background-color', '#eef9f9');
+    $(this).css('color', '#202121');
   })
 
 $("body").on("mouseleave", ".compose", function() {
-  $(this).css('background-color', '#fbfdfdbd');
+  $(this).css('background-color', '#cbefefeb');
+  $(this).css('color', '#038a75');
   })
 
 })

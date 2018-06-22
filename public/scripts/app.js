@@ -1,15 +1,12 @@
-$(document).ready(function() {
-var newTweet;
-loadTweets();
+
 
 function createTweetElement(tweet) {
-  // let tweetDate = moment().startOf('day').fromNow()
   let $tweet = $('#template-tweet article').clone();
     $tweet.find(".avatar").attr("src", tweet.user.avatars.small);
     $tweet.find('h1').text(tweet.user.name);
     $tweet.find('.handle').text(tweet.user.handle);
     $tweet.find(".tweet-content").text(tweet.content.text);
-    $tweet.find(".tweet-date").text(moment().fromNow());
+    $tweet.find(".tweet-date").text(moment(tweet.created_at).fromNow());
     return $tweet;
 }
 
@@ -35,6 +32,12 @@ function loadTweets(){
   });
 }
 
+
+
+$(document).ready(function() {
+var newTweet;
+loadTweets();
+
 //Posting a tweet
 $(".new-tweet-form").on("submit", function(event) {
    event.preventDefault();
@@ -58,7 +61,6 @@ $(".new-tweet-form").on("submit", function(event) {
   }
 })
 
-
 // Toggle new tweet section on "compose" click
 $(".compose").click(function(){
   $(".new-tweet").slideToggle();
@@ -67,10 +69,3 @@ $(".compose").click(function(){
 
 
 })
-
-
-/*
-----------------To fix:
-fix date format
-
-*/
